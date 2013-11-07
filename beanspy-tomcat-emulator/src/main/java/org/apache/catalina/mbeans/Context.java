@@ -7,6 +7,6 @@ public class Context implements ContextMBean {
 	private static Logger logger = LoggerFactory.getLogger(ContextMBean.class);
 	
 	public Context() {
-		logger.info("---> created ContextMBean");
+		logger.info("------> created ContextMBean");
 	}
 }
