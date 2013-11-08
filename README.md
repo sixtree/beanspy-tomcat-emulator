@@ -45,7 +45,7 @@ jar -uf BeanSpy.HTTP.NoAuth.war WEB-INF/web.xml
 ```
 
 - Copy the built ```beanspy-tomcat-emulator.war``` to ```${activemq.home}/webapps```
-- Add the following lines to ```${activemq.home}/conf/jetty.xml```
+- Add the following lines to ```${activemq.home}/conf/jetty.xml``` *before* the BeanSpy webapp added above (the emulation must be running before BeanSpy is loaded to ensure it believes the Tomcat container illusion)
 
 ```
 <bean class="org.eclipse.jetty.webapp.WebAppContext">
