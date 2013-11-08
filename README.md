@@ -15,7 +15,7 @@ cd beanspy-tomcat-emulator
 mvn clean package
 ```
 
-Resulting package is in target/beanspy-tomcat-emulator.war
+Resulting package is in ```target/beanspy-tomcat-emulator.war```
 
 Installation for ActiveMQ
 =========================
@@ -75,4 +75,6 @@ jar -uf BeanSpy.HTTP.NoAuth.war WEB-INF/web.xml
 2013-11-08 10:03:36,379 | INFO  | started o.e.j.w.WebAppContext{/tomcat-emulator,file:/Users/yamen/Coding/beanspy-tomcat-emulator/activemq/apache-activemq-5.9.0/webapps/beanspy-tomcat-emulator/} | org.eclipse.jetty.server.handler.ContextHandler | main
 ```
 
-- Check out the output for the relevant BeanSpy query at http://localhost:8161/BeanSpy/MBeans?JMXQuery=Catalina:j2eeType=WebModule,*&MaxDepth=0
+- Check that the applications have been correctly loaded at ```http://localhost:8161/tomcat-emulator/```
+
+- Check out the output for the relevant BeanSpy query at ```http://localhost:8161/BeanSpy/MBeans?JMXQuery=Catalina:j2eeType=WebModule,*&MaxDepth=0```

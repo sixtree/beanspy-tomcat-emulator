@@ -1,6 +1,8 @@
 package com.sixtree.esb.monitoring;
 
 import java.lang.management.ManagementFactory;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.management.MBeanServer;
 import javax.management.ObjectName;
@@ -23,13 +25,16 @@ public class BeanSpyTomcatEmulator implements ServletContextListener {
         ServletContext sc = sce.getServletContext();
         final MBeanServer mbeanServer = ManagementFactory.getPlatformMBeanServer();
         String applicationsParam = sc.getInitParameter("com.sixtree.esb.monitoring.TomcatEmulatedApplications");
-        String[] applications = applicationsParam.split(",");
+        Set<String> applications = new HashSet<String>();
+        for (String application: applicationsParam.split(",")) {
+        	applications.add(application.trim());
+        }
+        sc.setAttribute("applications", applications);
         
         for (String application: applications) {
-        	String trimmed = application.trim();
-        	logger.info("---> Loading application: " + trimmed);
+        	logger.info("---> Loading application: " + application);
         	try {
-	        	ObjectName objectName = new ObjectName("Catalina:J2EEApplication=none,J2EEServer=none,j2eeType=WebModule,name=" + trimmed);
+	        	ObjectName objectName = new ObjectName("Catalina:J2EEApplication=none,J2EEServer=none,j2eeType=WebModule,name=" + application);
 				ContextMBean mbean = new Context();
 				mbeanServer.registerMBean(mbean, objectName);
 				logger.info("------> registerMBean ok");
